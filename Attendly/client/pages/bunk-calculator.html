@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bunk Calculator — Attendly</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <div id="sidebar-mount"></div>
+
+    <div class="main-content">
+
+      <header class="topbar" role="banner">
+        <div class="topbar-left">
+          <div class="page-title">Bunk Calculator</div>
+          <div class="page-subtitle">Find out how many classes you can safely skip</div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-date" id="topbar-date"></div>
+          <button class="btn-menu" id="btn-menu" aria-label="Open navigation menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="page-content" id="main" role="main">
+
+        <div class="calc-grid">
+
+          <!-- Left column: inputs -->
+          <div>
+
+            <!-- Input card -->
+            <div class="card" style="margin-bottom:16px;">
+              <div class="card-header">
+                <h2 class="card-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="7" y1="21" x2="3" y2="3"/><line x1="17" y1="21" x2="21" y2="3"/>
+                    <line x1="7" y1="12" x2="17" y2="12"/><line x1="5" y1="6" x2="19" y2="6"/>
+                    <line x1="9" y1="18" x2="15" y2="18"/>
+                  </svg>
+                  Your Attendance
+                </h2>
+              </div>
+
+              <div class="input-row">
+                <div class="calc-input-group">
+                  <label for="inp-held">Total Classes Held</label>
+                  <input type="number" id="inp-held" class="calc-input"
+                         min="0" max="9999" placeholder="e.g. 224"
+                         aria-label="Total classes held" />
+                </div>
+                <div class="calc-input-group">
+                  <label for="inp-attended">Classes Attended</label>
+                  <input type="number" id="inp-attended" class="calc-input"
+                         min="0" max="9999" placeholder="e.g. 168"
+                         aria-label="Classes attended" />
+                </div>
+              </div>
+
+              <!-- Live current percentage display -->
+              <div class="current-pct-display">
+                <span class="current-pct-value" id="current-pct">—</span>
+                <div class="current-pct-label">Current Attendance</div>
+                <div class="progress-bar" style="margin-top:12px;">
+                  <div class="progress-fill accent" id="current-pct-bar" style="width:0%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Target slider card -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/>
+                    <line x1="8" y1="12" x2="16" y2="12"/>
+                  </svg>
+                  Target Attendance
+                </h2>
+              </div>
+
+              <div class="target-slider-section">
+                <div class="slider-header">
+                  <label for="target-slider">Drag to set target</label>
+                  <span class="slider-value" id="slider-val" aria-live="polite">75%</span>
+                </div>
+                <input type="range" id="target-slider"
+                       min="50" max="100" value="75" step="1"
+                       aria-label="Target attendance percentage"
+                       aria-valuemin="50" aria-valuemax="100" aria-valuenow="75" />
+                <div class="presets" role="group" aria-label="Quick target presets">
+                  <button class="preset-btn" data-pct="65" aria-label="Set target to 65%">65%</button>
+                  <button class="preset-btn active" data-pct="75" aria-label="Set target to 75%">75%</button>
+                  <button class="preset-btn" data-pct="80" aria-label="Set target to 80%">80%</button>
+                  <button class="preset-btn" data-pct="85" aria-label="Set target to 85%">85%</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right column: results + formula -->
+          <div>
+
+            <!-- Result panel -->
+            <div class="card" style="margin-bottom:16px;padding:0;overflow:hidden;">
+              <div style="padding:16px 20px;border-bottom:1px solid var(--border);">
+                <h2 class="card-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/>
+                    <path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
+                  </svg>
+                  Result
+                </h2>
+              </div>
+              <div class="result-panel" id="result-panel" aria-live="polite">
+                <div style="padding:32px;text-align:center;color:var(--text-muted);">
+                  Enter your attendance to see results.
+                </div>
+              </div>
+            </div>
+
+            <!-- Formula explanation -->
+            <div class="formula-card">
+              <h3>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+                </svg>
+                How is this calculated?
+              </h3>
+
+              <p><strong style="color:var(--text-primary)">If you are above target (how many can you miss):</strong></p>
+              <p>We solve: <em>attended ÷ (held + x) ≥ target</em> for the largest whole number x.</p>
+              <div class="formula-code">x = floor( (attended − target × held) ÷ target )</div>
+
+              <p><strong style="color:var(--text-primary)">If you are below target (how many must you attend):</strong></p>
+              <p>We solve: <em>(attended + x) ÷ (held + x) ≥ target</em> for the smallest whole number x.</p>
+              <div class="formula-code">x = ceil( (target × held − attended) ÷ (1 − target) )</div>
+
+              <p style="margin-top:8px;">
+                These formulas assume all future classes are consecutive. The minimum required attendance
+                is set to <strong>75%</strong> by most colleges — adjust the slider for your institution's rule.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/bunk-calculator.js"></script>
+</body>
+</html>

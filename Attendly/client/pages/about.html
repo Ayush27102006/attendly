@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Attendly</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <div id="sidebar-mount"></div>
+
+    <div class="main-content">
+
+      <header class="topbar" role="banner">
+        <div class="topbar-left">
+          <div class="page-title">About Attendly</div>
+          <div class="page-subtitle">College project documentation &amp; architecture</div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-date" id="topbar-date"></div>
+          <button class="btn-menu" id="btn-menu" aria-label="Open navigation menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="page-content" id="main" role="main" style="max-width:900px;">
+
+        <!-- Hero -->
+        <div class="about-hero">
+          <div class="logo-badge-large" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h1>Attendly</h1>
+          <p>CSE &nbsp;·&nbsp; 3rd Semester &nbsp;·&nbsp; College Project</p>
+          <div class="about-badges">
+            <span class="about-badge accent">v1.0</span>
+            <span class="about-badge">Node.js</span>
+            <span class="about-badge">Express</span>
+            <span class="about-badge">Vanilla JS</span>
+            <span class="about-badge">HTML5 / CSS3</span>
+          </div>
+        </div>
+
+        <!-- What is Attendly -->
+        <div class="card" style="margin-bottom:24px;">
+          <h2 class="card-title" style="margin-bottom:12px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            What is Attendly?
+          </h2>
+          <p style="color:var(--text-secondary);line-height:1.8;font-size:0.9375rem;">
+            Attendly is a student attendance management dashboard built as a 3rd-semester Computer Science
+            Engineering college project. It helps students track their attendance across subjects, view their
+            weekly timetable, monitor a monthly calendar, and calculate how many classes they can safely skip
+            — or how many they must attend — to meet a target percentage.
+          </p>
+          <p style="color:var(--text-secondary);line-height:1.8;font-size:0.9375rem;margin-top:12px;">
+            The application demonstrates a complete client-server architecture using only core web technologies:
+            no frameworks, no databases, no third-party UI libraries. Every part of the system — from the login
+            flow to the bunk calculation — is implemented from scratch.
+          </p>
+        </div>
+
+        <!-- Features grid -->
+        <h2 style="font-size:1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+          Key Features
+        </h2>
+        <div class="features-grid" style="margin-bottom:32px;">
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
+              </svg>
+            </div>
+            <h3>Dashboard</h3>
+            <p>SVG circular progress ring, summary stats, and subject cards — all driven by live API data.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+              </svg>
+            </div>
+            <h3>Attendance Records</h3>
+            <p>Subject table with Safe / Warning / Danger filters. Adapts to mobile card layout automatically.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <h3>Timetable</h3>
+            <p>Day-tab weekly timetable with breaks and labs. Current weekday selected automatically.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+                <circle cx="8" cy="15" r="1" fill="currentColor"/>
+                <circle cx="12" cy="15" r="1" fill="currentColor"/>
+                <circle cx="16" cy="15" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3>Calendar</h3>
+            <p>Full September 2026 calendar with colour-coded attendance and clickable day detail panel.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="21" x2="3" y2="3"/><line x1="17" y1="21" x2="21" y2="3"/>
+                <line x1="7" y1="12" x2="17" y2="12"/>
+              </svg>
+            </div>
+            <h3>Bunk Calculator</h3>
+            <p>Real-time formula solver. Calculates how many classes to skip or attend based on target.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>Auth Guard</h3>
+            <p>Session stored in localStorage. All protected pages redirect to login if no session found.</p>
+          </div>
+
+        </div>
+
+        <!-- Tech stack -->
+        <h2 style="font-size:1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+          </svg>
+          Technology Stack
+        </h2>
+        <div class="tech-grid" style="margin-bottom:32px;">
+          <div class="tech-item"><div class="tech-dot"></div>HTML5</div>
+          <div class="tech-item"><div class="tech-dot"></div>CSS3 (Grid / Flexbox)</div>
+          <div class="tech-item"><div class="tech-dot"></div>Vanilla JavaScript ES6+</div>
+          <div class="tech-item"><div class="tech-dot"></div>SVG (progress ring, icons)</div>
+          <div class="tech-item"><div class="tech-dot"></div>Node.js (v18+)</div>
+          <div class="tech-item"><div class="tech-dot"></div>Express.js (v4)</div>
+          <div class="tech-item"><div class="tech-dot"></div>fetch() API</div>
+          <div class="tech-item"><div class="tech-dot"></div>localStorage (sessions)</div>
+          <div class="tech-item"><div class="tech-dot"></div>JS Data Modules (no DB)</div>
+          <div class="tech-item"><div class="tech-dot"></div>Responsive CSS Media Queries</div>
+        </div>
+
+        <!-- Architecture diagram -->
+        <h2 style="font-size:1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          System Architecture
+        </h2>
+
+        <div class="arch-diagram" style="margin-bottom:24px;">
+          <div class="arch-flow">
+
+            <div class="arch-node accent-node">
+              <div class="arch-node-title">👤 Student</div>
+              <div class="arch-node-desc">Opens browser, enters credentials</div>
+            </div>
+
+            <div class="arch-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+              </svg>
+              <span>HTTP request</span>
+            </div>
+
+            <div class="arch-node">
+              <div class="arch-node-title">🌐 Browser / UI</div>
+              <div class="arch-node-desc">Vanilla HTML · CSS · JS</div>
+            </div>
+
+            <div class="arch-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+              </svg>
+              <span>fetch() API calls</span>
+            </div>
+
+            <div class="arch-node">
+              <div class="arch-node-title">⚙️  Node.js + Express</div>
+              <div class="arch-node-desc">server.js · REST routes · static serving</div>
+            </div>
+
+            <div class="arch-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+              </svg>
+              <span>require()</span>
+            </div>
+
+            <div class="arch-node accent-node">
+              <div class="arch-node-title">📦 JS Data Modules</div>
+              <div class="arch-node-desc">students.js · attendance.js · timetable.js · calendar.js</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Authentication flow -->
+        <div class="card" style="margin-bottom:24px;">
+          <h2 class="card-title" style="margin-bottom:12px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Authentication Flow
+          </h2>
+          <ol style="color:var(--text-secondary);line-height:2;font-size:0.875rem;padding-left:20px;list-style:decimal;">
+            <li>Student enters roll number and password on the login page.</li>
+            <li>Browser sends a <code style="background:var(--bg-hover);padding:1px 6px;border-radius:4px;">POST /api/auth/login</code> request with JSON body.</li>
+            <li>Express route handler looks up the student in <code style="background:var(--bg-hover);padding:1px 6px;border-radius:4px;">server/data/students.js</code>.</li>
+            <li>If credentials match, the server returns the student profile (no password).</li>
+            <li>Browser stores the student object in <code style="background:var(--bg-hover);padding:1px 6px;border-radius:4px;">localStorage</code> and sets an auth flag.</li>
+            <li>Every page calls <code style="background:var(--bg-hover);padding:1px 6px;border-radius:4px;">requireAuth()</code> — if no session exists, it redirects to login.</li>
+            <li>Logout clears localStorage and redirects to the login page.</li>
+          </ol>
+        </div>
+
+        <!-- Data storage -->
+        <div class="card" style="margin-bottom:24px;">
+          <h2 class="card-title" style="margin-bottom:12px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+            Data Storage Approach
+          </h2>
+          <p style="color:var(--text-secondary);line-height:1.8;font-size:0.875rem;">
+            This project intentionally avoids external databases (MongoDB, MySQL, etc.) to keep the setup simple
+            and dependency-free. All sample data lives in plain JavaScript modules inside <code style="background:var(--bg-hover);padding:1px 6px;border-radius:4px;">server/data/</code>.
+            The Express server imports these modules and serves the data as JSON through REST endpoints.
+          </p>
+          <p style="color:var(--text-secondary);line-height:1.8;font-size:0.875rem;margin-top:8px;">
+            In a production system, these modules would be replaced by database queries. The REST API contract
+            (endpoint URLs, request/response shapes) would remain the same — only the data layer would change.
+          </p>
+        </div>
+
+        <!-- Limitations -->
+        <div class="card" style="margin-bottom:24px;border-color:var(--warning-border);">
+          <h2 class="card-title" style="margin-bottom:12px;color:var(--warning-text);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Limitations (Demo Project)
+          </h2>
+          <ul style="color:var(--text-secondary);line-height:2;font-size:0.875rem;padding-left:20px;list-style:disc;">
+            <li>Authentication is plain-text password comparison — not suitable for production.</li>
+            <li>No HTTPS — run locally only.</li>
+            <li>Data is hardcoded in JS modules — not persistent across server restarts.</li>
+            <li>No real JWT / session tokens — localStorage auth flag can be manually set.</li>
+            <li>Calendar data is only available for September 2026.</li>
+            <li>Only one demo student is provided in the data.</li>
+          </ul>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align:center;color:var(--text-muted);font-size:0.8125rem;padding:24px 0 8px;">
+          Built with ♥ for CSE 3rd Semester · Academic Session 2023-24 · Attendly v1.0
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/layout.js"></script>
+  <script>
+    // About page: requires auth + init layout, no extra data loading needed
+    const student = requireAuth();
+    initLayout(student, "about");
+  </script>
+</body>
+</html>

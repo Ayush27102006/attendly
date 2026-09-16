@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attendly — Login</title>
+  <meta name="description" content="Attendly: Student Attendance Management System. Login to view your attendance." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="login-page">
+
+  <div class="login-container">
+
+    <!-- Logo -->
+    <div class="login-logo" aria-label="Attendly">
+      <div class="logo-badge" aria-hidden="true">
+        <!-- Checkmark SVG icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+             stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Attendly</span>
+        <span class="logo-tagline">Every class counts.</span>
+      </div>
+    </div>
+
+    <!-- Login card -->
+    <div class="login-card" role="main">
+      <h1 class="login-heading">Welcome back</h1>
+      <p class="login-subheading">Sign in with your college roll number</p>
+
+      <form id="login-form" novalidate aria-label="Login form">
+
+        <div class="form-group">
+          <label for="roll-number">Roll Number</label>
+          <input
+            type="text"
+            id="roll-number"
+            name="rollNumber"
+            placeholder="e.g. 2510991399"
+            autocomplete="username"
+            inputmode="numeric"
+            required
+            aria-required="true"
+            aria-describedby="roll-hint"
+          />
+          <span class="sr-only" id="roll-hint">Enter your 10-digit college roll number</span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+            aria-required="true"
+          />
+        </div>
+
+        <!-- Error message (hidden until a login attempt fails) -->
+        <div class="login-error" id="login-error" role="alert" aria-live="polite"></div>
+
+        <button type="submit" class="btn-primary" id="login-btn" aria-label="Sign in">
+          <span id="btn-text">Sign In</span>
+          <!-- Spinner shown during API call -->
+          <span id="btn-spinner" class="spinner" style="width:18px;height:18px;border-width:2px;display:none;" aria-hidden="true"></span>
+        </button>
+
+      </form>
+
+      <!-- Demo credentials hint -->
+      <div class="demo-creds" aria-label="Demo credentials">
+        <h4>Demo Credentials</h4>
+        <p>
+          Roll Number: <code>2510991399</code><br />
+          Password: <code>1234</code>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts: api.js first (defines apiLogin), then auth.js (defines saveSession) -->
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    /**
+     * Login form handler.
+     * Sends credentials to Express backend. On success, stores session and redirects.
+     * On failure, shows an inline error message without page reload.
+     */
+    document.getElementById("login-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const rollNumber = document.getElementById("roll-number").value.trim();
+      const password   = document.getElementById("password").value;
+      const errorEl    = document.getElementById("login-error");
+      const btnText    = document.getElementById("btn-text");
+      const btnSpinner = document.getElementById("btn-spinner");
+      const loginBtn   = document.getElementById("login-btn");
+
+      // Hide previous errors
+      errorEl.textContent = "";
+      errorEl.classList.remove("visible");
+
+      // Basic client-side check (server also validates)
+      if (!rollNumber || !password) {
+        errorEl.textContent = "Please enter your roll number and password.";
+        errorEl.classList.add("visible");
+        return;
+      }
+
+      // Show loading state
+      loginBtn.disabled    = true;
+      btnText.textContent  = "Signing in…";
+      btnSpinner.style.display = "inline-block";
+
+      try {
+        // POST to Express backend — credentials validated server-side
+        const data = await apiLogin(rollNumber, password);
+
+        if (data.success) {
+          // Save student info to localStorage (no password stored)
+          saveSession(data.student);
+          // Redirect to dashboard
+          window.location.href = "/pages/dashboard.html";
+        } else {
+          // Server returned success:false with a message
+          errorEl.textContent = data.message || "Invalid credentials. Please try again.";
+          errorEl.classList.add("visible");
+        }
+      } catch (err) {
+        // Network error or server-side validation rejection
+        errorEl.textContent = err.message || "Login failed. Please check your connection and try again.";
+        errorEl.classList.add("visible");
+      } finally {
+        // Restore button
+        loginBtn.disabled        = false;
+        btnText.textContent      = "Sign In";
+        btnSpinner.style.display = "none";
+      }
+    });
+
+    // If already logged in, skip to dashboard
+    if (localStorage.getItem("attendly_authed") === "1") {
+      window.location.replace("/pages/dashboard.html");
+    }
+  </script>
+
+</body>
+</html>

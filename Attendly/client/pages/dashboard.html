@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Attendly</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Sidebar injected by layout.js -->
+    <div id="sidebar-mount"></div>
+
+    <!-- Main content -->
+    <div class="main-content">
+
+      <!-- Top navbar -->
+      <header class="topbar" role="banner">
+        <div class="topbar-left">
+          <div class="page-title">Dashboard</div>
+          <div class="page-subtitle">Your attendance at a glance</div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-date" id="topbar-date" aria-live="polite"></div>
+          <button class="btn-menu" id="btn-menu" aria-label="Open navigation menu" aria-expanded="false">
+            <!-- Hamburger icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Page content -->
+      <main class="page-content" id="main" role="main">
+
+        <!-- Welcome greeting -->
+        <section class="welcome-section" aria-labelledby="greeting">
+          <h1 id="greeting" class="welcome-greeting"></h1>
+          <div class="welcome-meta" id="welcome-meta"></div>
+        </section>
+
+        <!-- Circular progress ring + description -->
+        <section id="overview-section" aria-label="Overall attendance overview"></section>
+
+        <!-- Summary stat cards -->
+        <section id="stats-section" aria-label="Attendance statistics" style="margin-top:24px;"></section>
+
+        <!-- Subject attendance cards -->
+        <section id="subjects-section" aria-label="Subject-wise attendance" style="margin-top:8px;"></section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Shared scripts must load in order -->
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

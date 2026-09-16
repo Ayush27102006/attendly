@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendar — Attendly</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <div id="sidebar-mount"></div>
+
+    <div class="main-content">
+
+      <header class="topbar" role="banner">
+        <div class="topbar-left">
+          <div class="page-title">Attendance Calendar</div>
+          <div class="page-subtitle">September 2026 — Click a day for details</div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-date" id="topbar-date"></div>
+          <button class="btn-menu" id="btn-menu" aria-label="Open navigation menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="page-content" id="main" role="main">
+
+        <div class="calendar-layout">
+
+          <!-- Calendar grid (left) -->
+          <div>
+            <div id="calendar-grid-container"></div>
+          </div>
+
+          <!-- Day detail panel (right) -->
+          <div class="day-detail-panel" id="day-detail" aria-live="polite" aria-label="Selected day details">
+            <div class="day-detail-empty">Select a day to see details.</div>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/calendar.js"></script>
+</body>
+</html>
