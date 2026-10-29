@@ -1,16 +1,22 @@
 {
   "name": "attendly",
-  "version": "1.0.0",
-  "description": "Attendly — Student Attendance Management System. A college project built with Vanilla JS, Node.js, and Express.",
+  "version": "2.0.0",
+  "description": "Attendly — Student Attendance Management System. Full-stack React + Express college project.",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "build": "npm run build --prefix client-react",
+    "build:client": "npm run build --prefix client-react",
+    "client": "npm run dev --prefix client-react"
   },
   "keywords": [
     "attendance",
     "student",
     "college",
-    "dashboard"
+    "dashboard",
+    "react",
+    "redux",
+    "react-router"
   ],
   "author": "Ayush Mahajan",
   "license": "MIT",

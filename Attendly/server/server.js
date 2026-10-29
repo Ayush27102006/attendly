@@ -16,6 +16,7 @@
 
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 
@@ -32,8 +33,12 @@ app.use(express.urlencoded({ extended: false }));
 
 // ── Static files ─────────────────────────────────────────────────────────────
 
-// Serve everything inside client/ at the root URL
-app.use(express.static(path.join(__dirname, "..", "client")));
+// Prefer React production build (client-react/dist) if available, otherwise fall back to original client/
+const reactDistPath = path.join(__dirname, "..", "client-react", "dist");
+const vanillaClientPath = path.join(__dirname, "..", "client");
+const staticDir = fs.existsSync(reactDistPath) ? reactDistPath : vanillaClientPath;
+
+app.use(express.static(staticDir));
 
 // ── API Routes ────────────────────────────────────────────────────────────────
 
@@ -51,7 +56,7 @@ app.use("/api/calendar", calendarRoute);
 
 // ── Catch-all ─────────────────────────────────────────────────────────────────
 
-// Serve index.html for non-API routes
+// Serve index.html for non-API routes (supports React Router client-side routing)
 app.get("*", (req, res) => {
   if (req.path.startsWith("/api/")) {
     return res.status(404).json({
@@ -60,9 +65,11 @@ app.get("*", (req, res) => {
     });
   }
 
-  res.sendFile(
-    path.join(__dirname, "..", "client", "index.html")
-  );
+  const indexPath = fs.existsSync(path.join(reactDistPath, "index.html"))
+    ? path.join(reactDistPath, "index.html")
+    : path.join(vanillaClientPath, "index.html");
+
+  res.sendFile(indexPath);
 });
 
 // ── Start server ──────────────────────────────────────────────────────────────

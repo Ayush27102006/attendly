@@ -2,3 +2,5 @@ node_modules/
 .env
 dist/
 build/
+client-react/node_modules/
+client-react/dist/
